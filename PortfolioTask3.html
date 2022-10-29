@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title for the page -->
+    <title>Portfolio Task 3</title>
+
+    <!-- Link to my style sheet -->
+    <link rel="stylesheet" href="index3.css">
+
+    <!--The next three lines allow the Vega embed-->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+</head>
+
+
+
+<body>
+    <!-- A div that contains a group of items for week 1. Can be useful for setting background colours etc.  -->
+    <div class="myWeek3">
+        <h1>Portfolio Task 3</h1>
+    
+        <p>This graph illustrates historical GDP across some of the world's major economies, in particular showing the rise of
+            China in the 21st century.The line graph is a suitable visual encoding for this data as it clearly portrays the
+             GDP trends which took place in each country.</p>
+        <div class="chart" id="Chart1"></div>
+
+        <p>This graph replicates the above, but the visual encoding is an area chart. I have done this
+        to highlight how changing the visual encoding of a graph can change the quality of the graph and the message it conveys.<p>
+        <div class="chart" id="Chart2"> </div>
+    </div> 
+</body>
+
+
+<script>
+    //Define charts:
+    var myChart1 = "GDP_Chart1.json";
+    var myChart2 = "GDP_Chart2.json";
+
+    // Embed charts:
+    vegaEmbed('#Chart1', myChart1);
+    vegaEmbed('#Chart2', myChart2);
+</script>
+
+</html>
+
+
