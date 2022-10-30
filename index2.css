@@ -1,0 +1,62 @@
+/* Import a font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+
+/* Set the background color for my page: */
+
+body{
+    background-color: #1e252d;
+ }
+
+
+/* Choose the appearance of the tags, h1, h3 and p: */
+p{
+    color:rgb(255, 255, 255);
+    font-family: 'Roboto', sans-serif;
+    text-align: justify;
+}
+h1,h3{color:rgb(255, 255, 255);
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+.myWeek2{
+    margin: auto;
+    max-width: 600px;
+    background-color: #1e252d;
+
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #1e252d;
+}
+
+
+/* Set the apperance of the class, chart */
+.Chart1{
+    background-color: white;
+    width:450px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 20px;
+    border-color: grey;
+    height: 400px;
+}
+.Chart2{
+    background-color: white;
+    width:450px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 20px;
+    border-color: grey;
+    height: 400px;
+}
+
+/* Set the apperance for a particular chart */
+#Chart1{
+    border-color: grey;
+    left: 80px;  
+}
+#Chart2{
+    border-color: grey;
+    left: 80px;  
+}
