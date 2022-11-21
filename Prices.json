@@ -1,0 +1,38 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/KristianTonev/KristianTonev.github.io/main/Housing_Price.csv"
+  },
+  "mark": {"type": "line", "color": "#EB5C2E", "strokeWidth": 2, "opacity": 1},
+  "title": {
+    "text": "UK Average Home Price",
+    "subtitle": "Source: ONS",
+    "subtitleFontStyle": "italic",
+    "subtitleFontSize": 10,
+    "anchor": "start",
+    "color": "black"
+  },
+  "width": 400,
+  "height": 300,
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "temporal",
+      "title": null,
+      "axis": {"grid": false}
+    },
+    "y": {
+      "field": "UK average house price",
+      "type": "quantitative",
+      "title": "Price (£)",
+      "scale": {"domain": [140000, 300000]}
+    },
+    "tooltip": [
+      {"field": "Year", "type": "temporal"},
+      {"field": "UK average house price", "type": "quantitative", "format": ","}
+    ]
+  },
+  "background": "lightgray",
+  "autosize": {"type": "pad", "contains": "padding", "resize": true},
+  "config": {}
+}
