@@ -1,257 +1,379 @@
 /*
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	The7 by TEMPLATE STOCK
+	templatestock.co @templatestock
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 */
 
-(function($) {
+$(document).ready(function() {
 
-	var	$window = $(window),
-		$body = $('body'),
-		$wrapper = $('#wrapper'),
-		$header = $('#header'),
-		$nav = $('#nav'),
-		$main = $('#main'),
-		$navPanelToggle, $navPanel, $navPanelInner;
+  /**
+   * Author: Heather Corey
+   * jQuery Simple Parallax Plugin
+   *
+   */
+   
+  (function($) {
+   
+      $.fn.parallax = function(options) {
+   
+          var windowHeight = $(window).height();
+   
+          // Establish default settings
+          var settings = $.extend({
+              speed        : 0.15
+          }, options);
+   
+          // Iterate over each object in collection
+          return this.each( function() {
+   
+            // Save a reference to the element
+            var $this = $(this);
+   
+            // Set up Scroll Handler
+            $(document).scroll(function(){
+   
+                  var scrollTop = $(window).scrollTop();
+                        var offset = $this.offset().top;
+                        var height = $this.outerHeight();
+   
+            // Check if above or below viewport
+        if (offset + height <= scrollTop || offset >= scrollTop + windowHeight) {
+          return;
+        }
+   
+        var yBgPosition = Math.round((offset - scrollTop) * settings.speed);
+   
+                          // Apply the Y Background Position to Set the Parallax Effect
+            $this.css('background-position', 'center ' + yBgPosition + 'px');
+                  
+            });
+          });
+      }
+  }(jQuery));
 
-	// Breakpoints.
-		breakpoints({
-			default:   ['1681px',   null       ],
-			xlarge:    ['1281px',   '1680px'   ],
-			large:     ['981px',    '1280px'   ],
-			medium:    ['737px',    '980px'    ],
-			small:     ['481px',    '736px'    ],
-			xsmall:    ['361px',    '480px'    ],
-			xxsmall:   [null,       '360px'    ]
-		});
+//Loader
+$(window).load(function() {
+	$(".loader-overlay").fadeOut("slow");
+})
 
-	/**
-	 * Applies parallax scrolling to an element's background image.
-	 * @return {jQuery} jQuery object.
-	 */
-	$.fn._parallax = function(intensity) {
+//Counter
+$('.counter').counterUp({
+    delay: 10,
+    time: 1000
+});
 
-		var	$window = $(window),
-			$this = $(this);
+$('a[data-rel^=lightcase]').lightcase();
 
-		if (this.length == 0 || intensity === 0)
-			return $this;
+// Instantiate MixItUp
+  $('.portfolio-items').mixItUp({
+       animation: {
+          duration: 300
+      }
+  });
 
-		if (this.length > 1) {
+// Carousels   
+  $('.cl-client-carousel').owlCarousel({
+      pagination:true,
+      slideSpeed : 300,
+      paginationSpeed : 400,
+      singleItem:true,
+      autoPlay:true,
+  }); 
+  
+  $('.cl-logo-carousel').owlCarousel({
+	  items : 6,
+      itemsDesktop : [1199,5],
+      itemsDesktopSmall : [979,3],
+      stopOnHover:true,
+      autoPlay:3000,
+  });
 
-			for (var i=0; i < this.length; i++)
-				$(this[i])._parallax(intensity);
+    $(".header-carousel").owlCarousel({
+        pagination:true,
+        navigation : true, // Show next and prev buttons
+        slideSpeed : 500,
+        paginationSpeed : 500,
+        singleItem:true,
+        autoPlay:true,
+    });
 
-			return $this;
+// Parallax
+$('.parallax-section').parallax({
+          speed : .100
+        });
 
+// Header Changer on Scroll
+$(function() {
+    //caches a jQuery object containing the header element
+    var header = $(".header-home");
+    $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 100) {
+            header.removeClass('header-home').addClass("header-default");
+        } else {
+            header.removeClass("header-default").addClass('header-home');
+        }
+    });
+});
+
+// Navigation
+  $('.nav-container').onePageNav({
+    scrollSpeed: 600,
+    currentClass: 'current',
+    changeHash: true,
+    filter: ':not(.external)'
+  });
+
+//Header Class Change on Resize
+  var $window = $(window);
+
+      // Function to handle changes to style classes based on window width
+      function checkWidth() {
+      if ($window.width() < 767) {
+          $('#top-header').removeClass('header-home').addClass('header-default');
+          };
+
+      if ($window.width() >= 767) {
+          $('#top-header').removeClass('header-default').addClass('header-home');
+      }
+  }
+
+  // Execute on load
+  checkWidth();
+
+  // Bind event listener
+      $(window).resize(checkWidth);
+
+//Google Map
+//set your google maps parameters
+	var $latitude = 45.537383,
+		$longitude = -73.597623,
+		$map_zoom = 14;
+
+	//google map custom marker icon - .png fallback for IE11
+	var is_internetExplorer11= navigator.userAgent.toLowerCase().indexOf('trident') > -1;
+	var $marker_url = ( is_internetExplorer11 ) ? '../i.imgur.com/TYdWTLk.png' : '../i.imgur.com/TYdWTLk.png';
+		
+	//define the basic color of your map, plus a value for saturation and brightness
+	var	$main_color = '#1abc9c',
+		$saturation= -20,
+		$brightness= 5;
+
+	//we define here the style of the map
+	var style= [ 
+		{
+			//set saturation for the labels on the map
+			elementType: "labels",
+			stylers: [
+				{saturation: $saturation}
+			]
+		},  
+	    {	//poi stands for point of interest - don't show these lables on the map 
+			featureType: "poi",
+			elementType: "labels",
+			stylers: [
+				{visibility: "off"}
+			]
+		},
+		{
+			//don't show highways lables on the map
+	        featureType: 'road.highway',
+	        elementType: 'labels',
+	        stylers: [
+	            {visibility: "off"}
+	        ]
+	    }, 
+		{ 	
+			//don't show local road lables on the map
+			featureType: "road.local", 
+			elementType: "labels.icon", 
+			stylers: [
+				{visibility: "off"} 
+			] 
+		},
+		{ 
+			//don't show arterial road lables on the map
+			featureType: "road.arterial", 
+			elementType: "labels.icon", 
+			stylers: [
+				{visibility: "off"}
+			] 
+		},
+		{
+			//don't show road lables on the map
+			featureType: "road",
+			elementType: "geometry.stroke",
+			stylers: [
+				{visibility: "off"}
+			]
+		}, 
+		//style different elements on the map
+		{ 
+			featureType: "transit", 
+			elementType: "geometry.fill", 
+			stylers: [
+				{ hue: $main_color },
+				{ visibility: "on" }, 
+				{ lightness: $brightness }, 
+				{ saturation: $saturation }
+			]
+		}, 
+		{
+			featureType: "poi",
+			elementType: "geometry.fill",
+			stylers: [
+				{ hue: $main_color },
+				{ visibility: "on" }, 
+				{ lightness: $brightness }, 
+				{ saturation: $saturation }
+			]
+		},
+		{
+			featureType: "poi.government",
+			elementType: "geometry.fill",
+			stylers: [
+				{ hue: $main_color },
+				{ visibility: "on" }, 
+				{ lightness: $brightness }, 
+				{ saturation: $saturation }
+			]
+		},
+		{
+			featureType: "poi.sport_complex",
+			elementType: "geometry.fill",
+			stylers: [
+				{ hue: $main_color },
+				{ visibility: "on" }, 
+				{ lightness: $brightness }, 
+				{ saturation: $saturation }
+			]
+		},
+		{
+			featureType: "poi.attraction",
+			elementType: "geometry.fill",
+			stylers: [
+				{ hue: $main_color },
+				{ visibility: "on" }, 
+				{ lightness: $brightness }, 
+				{ saturation: $saturation }
+			]
+		},
+		{
+			featureType: "poi.business",
+			elementType: "geometry.fill",
+			stylers: [
+				{ hue: $main_color },
+				{ visibility: "on" }, 
+				{ lightness: $brightness }, 
+				{ saturation: $saturation }
+			]
+		},
+		{
+			featureType: "transit",
+			elementType: "geometry.fill",
+			stylers: [
+				{ hue: $main_color },
+				{ visibility: "on" }, 
+				{ lightness: $brightness }, 
+				{ saturation: $saturation }
+			]
+		},
+		{
+			featureType: "transit.station",
+			elementType: "geometry.fill",
+			stylers: [
+				{ hue: $main_color },
+				{ visibility: "on" }, 
+				{ lightness: $brightness }, 
+				{ saturation: $saturation }
+			]
+		},
+		{
+			featureType: "landscape",
+			stylers: [
+				{ hue: $main_color },
+				{ visibility: "on" }, 
+				{ lightness: $brightness }, 
+				{ saturation: $saturation }
+			]
+			
+		},
+		{
+			featureType: "road",
+			elementType: "geometry.fill",
+			stylers: [
+				{ hue: $main_color },
+				{ visibility: "on" }, 
+				{ lightness: $brightness }, 
+				{ saturation: $saturation }
+			]
+		},
+		{
+			featureType: "road.highway",
+			elementType: "geometry.fill",
+			stylers: [
+				{ hue: $main_color },
+				{ visibility: "on" }, 
+				{ lightness: $brightness }, 
+				{ saturation: $saturation }
+			]
+		}, 
+		{
+			featureType: "water",
+			elementType: "geometry",
+			stylers: [
+				{ hue: $main_color },
+				{ visibility: "on" }, 
+				{ lightness: $brightness }, 
+				{ saturation: $saturation }
+			]
 		}
+	];
+		
+	//set google map options
+	var map_options = {
+      	center: new google.maps.LatLng($latitude, $longitude),
+      	zoom: $map_zoom,
+      	panControl: false,
+      	zoomControl: false,
+      	mapTypeControl: false,
+      	streetViewControl: false,
+      	mapTypeId: google.maps.MapTypeId.ROADMAP,
+      	scrollwheel: false,
+      	styles: style,
+    }
+    //inizialize the map
+	var map = new google.maps.Map(document.getElementById('google-container'), map_options);
+	//add a custom marker to the map				
+	var marker = new google.maps.Marker({
+	  	position: new google.maps.LatLng($latitude, $longitude),
+	    map: map,
+	    visible: true,
+	 	icon: $marker_url,
+	});
 
-		if (!intensity)
-			intensity = 0.25;
+	//add custom buttons for the zoom-in/zoom-out on the map
+	function CustomZoomControl(controlDiv, map) {
+		//grap the zoom elements from the DOM and insert them in the map 
+	  	var controlUIzoomIn= document.getElementById('cd-zoom-in'),
+	  		controlUIzoomOut= document.getElementById('cd-zoom-out');
+	  	controlDiv.appendChild(controlUIzoomIn);
+	  	controlDiv.appendChild(controlUIzoomOut);
 
-		$this.each(function() {
-
-			var $t = $(this),
-				$bg = $('<div class="bg"></div>').appendTo($t),
-				on, off;
-
-			on = function() {
-
-				$bg
-					.removeClass('fixed')
-					.css('transform', 'matrix(1,0,0,1,0,0)');
-
-				$window
-					.on('scroll._parallax', function() {
-
-						var pos = parseInt($window.scrollTop()) - parseInt($t.position().top);
-
-						$bg.css('transform', 'matrix(1,0,0,1,0,' + (pos * intensity) + ')');
-
-					});
-
-			};
-
-			off = function() {
-
-				$bg
-					.addClass('fixed')
-					.css('transform', 'none');
-
-				$window
-					.off('scroll._parallax');
-
-			};
-
-			// Disable parallax on ..
-				if (browser.name == 'ie'			// IE
-				||	browser.name == 'edge'			// Edge
-				||	window.devicePixelRatio > 1		// Retina/HiDPI (= poor performance)
-				||	browser.mobile)					// Mobile devices
-					off();
-
-			// Enable everywhere else.
-				else {
-
-					breakpoints.on('>large', on);
-					breakpoints.on('<=large', off);
-
-				}
-
+		// Setup the click event listeners and zoom-in or out according to the clicked element
+		google.maps.event.addDomListener(controlUIzoomIn, 'click', function() {
+		    map.setZoom(map.getZoom()+1)
 		});
-
-		$window
-			.off('load._parallax resize._parallax')
-			.on('load._parallax resize._parallax', function() {
-				$window.trigger('scroll');
-			});
-
-		return $(this);
-
-	};
-
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
+		google.maps.event.addDomListener(controlUIzoomOut, 'click', function() {
+		    map.setZoom(map.getZoom()-1)
 		});
+	}
 
-	// Scrolly.
-		$('.scrolly').scrolly();
+	var zoomControlDiv = document.createElement('div');
+ 	var zoomControl = new CustomZoomControl(zoomControlDiv, map);
 
-	// Background.
-		$wrapper._parallax(0.925);
+  	//insert the zoom div on the top left of the map
+  	map.controls[google.maps.ControlPosition.LEFT_TOP].push(zoomControlDiv);
 
-	// Nav Panel.
-
-		// Toggle.
-			$navPanelToggle = $(
-				'<a href="#navPanel" id="navPanelToggle">Menu</a>'
-			)
-				.appendTo($wrapper);
-
-			// Change toggle styling once we've scrolled past the header.
-				$header.scrollex({
-					bottom: '5vh',
-					enter: function() {
-						$navPanelToggle.removeClass('alt');
-					},
-					leave: function() {
-						$navPanelToggle.addClass('alt');
-					}
-				});
-
-		// Panel.
-			$navPanel = $(
-				'<div id="navPanel">' +
-					'<nav>' +
-					'</nav>' +
-					'<a href="#navPanel" class="close"></a>' +
-				'</div>'
-			)
-				.appendTo($body)
-				.panel({
-					delay: 500,
-					hideOnClick: true,
-					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
-					side: 'right',
-					target: $body,
-					visibleClass: 'is-navPanel-visible'
-				});
-
-			// Get inner.
-				$navPanelInner = $navPanel.children('nav');
-
-			// Move nav content on breakpoint change.
-				var $navContent = $nav.children();
-
-				breakpoints.on('>medium', function() {
-
-					// NavPanel -> Nav.
-						$navContent.appendTo($nav);
-
-					// Flip icon classes.
-						$nav.find('.icons, .icon')
-							.removeClass('alt');
-
-				});
-
-				breakpoints.on('<=medium', function() {
-
-					// Nav -> NavPanel.
-						$navContent.appendTo($navPanelInner);
-
-					// Flip icon classes.
-						$navPanelInner.find('.icons, .icon')
-							.addClass('alt');
-
-				});
-
-			// Hack: Disable transitions on WP.
-				if (browser.os == 'wp'
-				&&	browser.osVersion < 10)
-					$navPanel
-						.css('transition', 'none');
-
-	// Intro.
-		var $intro = $('#intro');
-
-		if ($intro.length > 0) {
-
-			// Hack: Fix flex min-height on IE.
-				if (browser.name == 'ie') {
-					$window.on('resize.ie-intro-fix', function() {
-
-						var h = $intro.height();
-
-						if (h > $window.height())
-							$intro.css('height', 'auto');
-						else
-							$intro.css('height', h);
-
-					}).trigger('resize.ie-intro-fix');
-				}
-
-			// Hide intro on scroll (> small).
-				breakpoints.on('>small', function() {
-
-					$main.unscrollex();
-
-					$main.scrollex({
-						mode: 'bottom',
-						top: '25vh',
-						bottom: '-50vh',
-						enter: function() {
-							$intro.addClass('hidden');
-						},
-						leave: function() {
-							$intro.removeClass('hidden');
-						}
-					});
-
-				});
-
-			// Hide intro on scroll (<= small).
-				breakpoints.on('<=small', function() {
-
-					$main.unscrollex();
-
-					$main.scrollex({
-						mode: 'middle',
-						top: '15vh',
-						bottom: '-15vh',
-						enter: function() {
-							$intro.addClass('hidden');
-						},
-						leave: function() {
-							$intro.removeClass('hidden');
-						}
-					});
-
-			});
-
-		}
-
-})(jQuery);
+});
