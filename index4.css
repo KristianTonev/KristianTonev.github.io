@@ -1,52 +1,193 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url(https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap);
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@900&display=swap');
 
 
-/* Set the background color for my page: */
-
-
-body{
-    background-color: #1e252d;
- }
-
-
-/* Choose the appearance of the tags, h1, h3 and p: */
-p{
-    color:rgb(255, 255, 255);
-    font-family: 'Roboto', sans-serif;
+p {
+	font-size: 16px;
+	margin: 5px 5px;
+	line-height: 22.4px;
+	color: #ffffff;
     text-align: justify;
 }
-h1, h3{
-    color:rgb(255, 255, 255);
-    font-family: 'Roboto', sans-serif;
-    text-align: center;   
-} 
-.myWeek4{
-    margin: auto;
-    max-width: 600px;
+
+body {
+  background-color: #1e252d;
+ }
+
+.rubric-launch{
+  color:#ffffff
+}
+
+/* ------------------------------------------------------------------------------
+	Grid stuff
+-------------------------------------------------------------------------------*/
+
+.grid_items {
+  padding: 2px;
+  display: grid;
+  grid-template-columns: 100%;
+  max-width: 800px; 
+  margin: 0 auto 0 auto !important;
+  padding: 0 5 0 5; 
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+.grid_items > div {
+  background-color: #ffffff;
+  padding: 5px;
+  border-radius: 10px;
+  width: 600px;
+  margin:auto;
+}
+.grid_items > div:nth-child(3n + 2) {
+  background-color: #ffffff;
+}
+.grid_items > div:nth-child(3n) {
+  background-color: #ffffff;
+}
+
+
+/* One column*/
+@media only screen and (min-width: 250px) {
+    .grid_items {
+      grid-template-columns: 100%;
+      max-width: 850px; 
+      margin: 0 auto 0 auto !important;
+      padding: 0 5 0 5; 
+      grid-column-gap: 10px;
+      grid-row-gap: 10px;
+      text-align: center;
+    }
+  
+    .wrap {
+      grid-template-columns: 100%;
+      max-width: 850px; 
+      margin: 0 auto 0 auto !important;
+        padding: 0 5 0 5; 
+      grid-column-gap: 10px;
+      grid-row-gap: 10px;
+      text-align: center;
+    }
+    .grid_items > div {
+      padding: 10px;
+    }
+    .rubric {
+      text-align: left;
+    }
+  
+  
+  }
+
+
+ul {
+	font-size: 18px;
+	margin: 5px 5px;
+	line-height: 22.4px;
+	color: #ffffff;
+}
+
+ul.a {
+  list-style-type: circle;
+}
+
+ul.b {
+  list-style-type: square;
+}
+
+ul, ol {
+	margin: 5px 5px;
+	padding: 0;
+}
+ul li {
+   list-style-position: inside;
+}
+
+/* ------------------------------------------------------------------------------
+	Lists
+-------------------------------------------------------------------------------*/
+
+h1 {
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+	font-variant: large;
+	font-size: 50px;
+	color: #ffffff;
+	margin: 30px 0px 30px 0px  ;
+	height: 40px;
+    text-align: center
+}
+h2 {
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+	font-size: 16px;
+	color: #ffffff;
+	margin: 0;
+	font-weight: 1000;
+}
+h3 {
+	font-size: 28px;
+	color: #ffffff;
+	font-weight: 300;
+}
+h4 {
+	font-size: 22px;
+	color: #ffffff;
+	font-weight: 400;
+}
+h5 {
+	font-size: 14px;
+	color: #ffffff;
+	font-weight: 700;
+}
+
+/* ------------------------------------------------------------------------------
+	Global Styles
+-------------------------------------------------------------------------------*/
+
+/* Links as buttons */
+a {
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: 300;
     background-color: #1e252d;
-
-      
-    border-width: 3px;
-    border-style: solid;
-    border-radius: 10px;
-    border-color: #1e252d;
+    color: white;
+    padding: 0.05em 0.10em;
+    text-decoration: none;
+    text-transform: none;
+    border-radius: 8px;
 }
 
-
-/* Set the apperance of the class, chart */
-.Chart1{
-    background-color: white;
-    width:1000px;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 500px;
-    border-color: grey;
-    height: 1000px;
+/* unvisited link */
+a:link {
+  color: #cbc7cf;
+  text-decoration: none;
 }
 
+/* visited link */
+a:visited {
+  color: #cbc7cf;
+  text-decoration: none;
+}
 
-/* Set the apperance for a particular chart */
-#Chart1{
-    border-color: grey;
-    left: 60px;  
+/* mouse over link */
+a:hover {
+  /* color: rgb(255, 173, 31); */
+  border-color: rgb(255, 173, 31);
+  text-decoration: none;
+  opacity:1;
+  border-color: rgb(255, 173, 31);
+}
+
+/* selected link */
+a:active {
+  color: blue;
+  text-decoration: none;
+}
+
+body {
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+	font-weight: 400;
+	color: #ffffff;
+	max-width: 1800px; 
+	margin: 0 auto 0 auto !important;
+	padding: 0 5 0 5; 
+	float: none !important; 
 }

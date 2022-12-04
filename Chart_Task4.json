@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "2020 Tokyo Olympics",
+    "subtitle": "Top 10 countries with the most medals (+ Bulgaria)",
+    "subtitleFontStyle": "italic",
+    "subtitleFontSize": 10,
+    "anchor": "start",
+    "color": "black"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/KristianTonev/KristianTonev.github.io/main/Tokyo_Olympics.csv"
+  },
+  "height": 320,
+  "width": 470,
+  "mark": {"type": "bar", "color": "#3a9c7f"},
+  "encoding": {
+    "x": {
+      "field": "Country",
+      "type": "ordinal",
+      "axis": {"title": null, "grid": false, "ticks": false, "labelAngle": 45},
+      "sort": "-y"
+    },
+    "y": {
+      "field": "Medals",
+      "type": "quantitative",
+      "title": "",
+      "axis": {"grid": true}
+    }
+  },
+  "config": {}
+}
