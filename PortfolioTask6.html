@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>PortfolioTask6</title>
+
+
+<link rel="stylesheet" href="index6.css">
+
+
+<!--The next three lines allow the Vega embed-->
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+<!-- heading for page-->
+<div class="wrap">
+    <h1>Portfolio Task 6<span style="color: #ffffff"></span></h1>
+    <hr>
+    <span style="display:block; height: 10px;"></span>
+    <p> One map simply breaks down the African continent, while the other map is thematic and the shading for each country
+        is based on it's population.<p>
+            <br>
+    <span style="display:block; height: 10px;"></span>
+  </div>
+
+
+<!-- START - Grid of divs that will house the charts-->
+<div class="grid_items">
+    <div class="grid_item" id="chart1"></div>
+    <div class="grid_item" id="chart2"></div>
+  
+  </div>
+<!-- END - Grid of divs that will house the charts-->  
+
+</body>
+
+<script>
+    // Set the charts that we want on the page as variables, linking them to JSON files:
+    
+    var surf1 ="Base_Map.json";
+    var surf2 ="Choropleth_Map.json"
+
+ // Now embed the charts in the divs set above:
+    vegaEmbed('#chart1', surf1, {"actions": true});   
+    vegaEmbed('#chart2', surf2, {"actions": true})
+
+
+</script>
+</html>
