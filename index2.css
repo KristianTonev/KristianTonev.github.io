@@ -48,7 +48,7 @@ body {
 
 
 /* Two columns*/
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 850px) {
     .grid_items, .wrap {
       grid-template-columns: 47.5% 47.5%;
       max-width: 850px; 

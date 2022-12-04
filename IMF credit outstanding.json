@@ -24,7 +24,7 @@
       "field": "%GDP",
       "type": "quantitative",
       "title": "",
-      "axis": {"grid": false, "format":"%"}
+      "axis": {"grid": false,"format":"%"}
     }
   },
   "config": {}
