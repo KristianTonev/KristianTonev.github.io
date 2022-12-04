@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>PortfolioTask5</title>
+
+
+<link rel="stylesheet" href="index5.css">
+
+
+<!--The next three lines allow the Vega embed-->
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+<!-- heading for page-->
+<div class="wrap">
+    <h1>Portfolio Task 5<span style="color: #ffffff"></span></h1>
+    <p>United Kingdom - ONS Dashboard<p>
+    <hr>
+    <span style="display:block; height: 10px;"></span>
+  </div>
+
+<!-- START - Grid of divs that will house the charts-->
+<div class="grid_items">
+    <div class="grid_item" id="chart1"></div>
+    <div class="grid_item" id="chart2"></div>
+    <div class="grid_item" id="chart3"></div>
+    <div class="grid_item" id="chart4"></div>
+    <div class="grid_item" id="chart5"></div>
+    <div class="grid_item" id="chart6"></div>
+    <div class="grid_item" id="chart7"></div>
+    <div class="grid_item" id="chart8"></div>
+    <div class="grid_item" id="chart9"></div>
+  </div>
+  <br>
+<!-- END - Grid of divs that will house the charts-->  
+
+</body>
+
+<script>
+    // Set the charts that we want on the page as variables, linking them to JSON files:
+    
+    var surf1 ="BKQK.json";
+    var surf2 ="HF6X.json";
+    var surf3 ="NMRL.json";
+    var surf4 ="JW2G.json";
+    var surf5 ="JW2T.json";
+    var surf6 ="JW27.json";
+    var surf7 ="MDD6.json";
+    var surf8 ="MDD7.json";
+    var surf9 ="MDD8.json";
+
+ // Now embed the charts in the divs set above:
+    vegaEmbed('#chart1', surf1, {"actions": true});   
+    vegaEmbed('#chart2', surf2, {"actions": true});
+    vegaEmbed('#chart3', surf3, {"actions": true});
+    vegaEmbed('#chart4', surf4, {"actions": true}); 
+    vegaEmbed('#chart5', surf5, {"actions": true}); 
+    vegaEmbed('#chart6', surf6, {"actions": true}); 
+    vegaEmbed('#chart7', surf7, {"actions": true}); 
+    vegaEmbed('#chart8', surf8, {"actions": true}); 
+    vegaEmbed('#chart9', surf9, {"actions": true})
+</script>
+</html>
