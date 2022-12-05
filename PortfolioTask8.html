@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>PortfolioTask8</title>
+
+
+<link rel="stylesheet" href="index8.css">
+
+
+<!--The next three lines allow the Vega embed-->
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+<!-- heading for page-->
+<div class="wrap">
+    <h1>Portfolio Task 8<span style="color: #ffffff"></span></h1>
+    <hr>
+ 
+  </div>
+
+
+<!-- START - Grid of divs that will house the charts-->
+<br><div class="grid_items">
+    <p>This graph showcases the distribution of returns of the S&P 500 index. It provides an insight into the probability
+      of achieving a particular return on any given day.<p>
+    <div class="grid_item" id="chart1"></div>
+    <br><p>This graph plots the month-on-month change of the S&P 500 index against the month-on-month change of the
+      University of Michigan Consumer Sentiment Index. Statistically, it appears there is a minor positive correlation.<p>
+    <div class="grid_item" id="chart2"></div>
+  
+  </div>
+<!-- END - Grid of divs that will house the charts-->  
+
+</body><br>
+
+<script>
+    // Set the charts that we want on the page as variables, linking them to JSON files:
+    
+    var surf1 ="Distribution.json";
+    var surf2 ="Scatter.json"
+
+ // Now embed the charts in the divs set above:
+    vegaEmbed('#chart1', surf1, {"actions": true});   
+    vegaEmbed('#chart2', surf2, {"actions": true})
+
+
+</script>
+</html>
+
+

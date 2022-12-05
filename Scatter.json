@@ -1,0 +1,77 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "SPX vs UMCSI",
+    "subtitle": "Relationship between changes in consumer sentiment and S&P 500 returns",
+    "subtitleFontStyle": "italic",
+    "subtitleFontSize": 10,
+    "anchor": "start",
+    "color": "black"
+  },
+  "height": 300,
+  "width": 350,
+  "data": {
+    "url": "https://raw.githubusercontent.com/KristianTonev/KristianTonev.github.io/main/Correlation.csv"
+  },
+  "layer": [
+    {
+      "mark": {"type": "point", "size": 60, "color": "#e6224b", "filled": true},
+      "encoding": {
+        "x": {
+          "field": "SPX Returns",
+          "type": "quantitative",
+          "title": "MoM Change in SPX",
+          "scale": {"domain": [-0.24, 0.12]}
+        },
+        "y": {
+          "field": "UMCSI_Change",
+          "type": "quantitative",
+          "title": "MoM Change in Consumer Sentiment"
+        },
+        "tooltip": [
+          {
+            "field": "SPX Returns",
+            "type": "nominal",
+            "title": "MoM change in SPX"
+          },
+          {
+            "field": "UMCSI_Change",
+            "type": "quantitative",
+            "title": "MoM change in Consumer Sentiment"
+          },
+          {}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "line", "color": "#440714"},
+      "transform": [
+        {
+          "regression": "UMCSI_Change",
+          "on": "SPX Returns",
+          "extent": [-0.25, 0.15]
+        }
+      ],
+      "encoding": {
+        "x": {"field": "SPX Returns", "type": "quantitative"},
+        "y": {"field": "UMCSI_Change", "type": "quantitative"}
+      }
+    },
+    {
+      "transform": [
+        {"regression": "UMCSI_Change", "on": "SPX Returns", "params": true},
+        {"calculate": "'R²: '+format(datum.rSquared, '.2f')", "as": "R2"}
+      ],
+      "mark": {
+        "type": "text",
+        "color": "firebrick",
+        "x": "width",
+        "align": "right",
+        "y": -5
+      },
+      "encoding": {"text": {"type": "nominal", "field": "R2"}}
+    }
+  ],
+  "autosize": {"type": "pad", "contains": "padding", "resize": true},
+  "config": {}
+}
