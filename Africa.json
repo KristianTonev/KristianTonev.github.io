@@ -1,0 +1,23 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "African Continent",
+    "anchor": "middle",
+    "color": "black",
+    "fontSize": 15
+  },
+  "width": "container",
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/KristianTonev/KristianTonev.github.io/main/Africa.json",
+    "format": {"type": "topojson", "feature": "continent_Africa_subunits"}
+  },
+  "projection": {"type": "mercator"},
+  "mark": {"type": "geoshape", "stroke": "darkgrey", "strokeWidth": 1},
+  "encoding": {
+    "tooltip": [
+      {"field": "properties.geounit", "type": "nominal", "title": "Country"}
+    ]
+  },
+  "config": {}
+}
