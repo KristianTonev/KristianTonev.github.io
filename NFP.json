@@ -1,0 +1,152 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Real GDP ",
+  "title": {
+    "text": "USA Real GDP vs Total Non-Farm Employment",
+    "subtitle":["Sources: FRED",
+  ""],
+    "subtitleFontStyle": "italic",
+    "subtitleFontSize": 10,
+    "anchor": "start",
+    "color": "black"
+  },
+  "config": {
+    "locale": {
+      "number": {
+        "decimal": ".",
+        "thousands": ",",
+        "grouping": [3],
+        "currency": ["$", ""]
+      }
+    },
+    "view": {"stroke": "transparent"}
+  },
+  "height": 370,
+  "width": 450,
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": null,
+      "axis": {"grid": false},
+      "scale": {"domain": ["1978-01-01", "2023-12-01"]}
+    },
+    "y": {
+      "field": "GDP",
+      "type": "quantitative",
+      "title": "Real GDP ($ Trillions)",
+      "axis": {
+        "grid": true,
+        "format": ",",
+        "gridOpacity": 0.6,
+        "ticks": true,
+        "labelPadding": 3
+      },
+      "scale": {"domain": [4, 20]}
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fapi.stlouisfed.org%2Ffred%2Fseries%2Fobservations%3Fseries_id%3DGDPC1%26observation_start%3D1970-01-01%26api_key%3D54c6ece10292ff18c2613e7bae66107a%26file_type%3Djson%0A",
+        "format": {"type": "json", "property": "observations"}
+      },
+      "mark": {"type": "line", "color": "darkblue", "point": "transparent"},
+      "transform": [
+        {"calculate": "datum.value / 1000", "as": "GDP"},
+        {"calculate": "year(datum.date)", "as": "year"},
+        {"filter": "datum.year>1977"},
+        {"calculate": "maxYear", "as": "maxYear"},
+        {"calculate": "minYear", "as": "minYear"},
+        {"filter": "datum.year>minYear"},
+        {"filter": "datum.year<maxYear"}
+      ],
+      "encoding": {
+        "tooltip": [
+          {"field": "date", "title": "Date", "type": "temporal"},
+          {"field": "GDP", "title": "Real GDP ($B)", "format": ".03"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fapi.stlouisfed.org%2Ffred%2Fseries%2Fobservations%3Fseries_id%3DPAYEMS%26observation_start%3D1970-01-01%26api_key%3D54c6ece10292ff18c2613e7bae66107a%26file_type%3Djson%0A",
+        "format": {"type": "json", "property": "observations"}
+      },
+      "mark": {
+        "type": "line",
+        "color": "skyblue",
+        "point": "transparent",
+        "strokeWidth": 1.2
+      },
+      "transform": [
+        {"calculate": "datum.value", "as": "NFP"},
+        {"calculate": "year(datum.date)", "as": "year"},
+        {"calculate": "maxYear", "as": "maxYear"},
+        {"calculate": "minYear", "as": "minYear"},
+        {"filter": "datum.year>minYear"},
+        {"filter": "datum.year<maxYear"}
+      ],
+      "encoding": {
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "title": "Non-Farm Employees",
+          "scale": {"domain": [80000, 160000]},
+          "axis": {"labelPadding": 3}
+        },
+        "tooltip": [
+          {"field": "date", "title": "Date", "type": "temporal"},
+          {"field": "NFP", "title": "NFP", "format": ","}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/KristianTonev/KristianTonev.github.io/main/Recession.csv"
+      },
+      "mark": {"type": "area", "color": "#F4A19F", "opacity": 0.3},
+      "transform": [
+        {"calculate": "year(datum.Date)", "as": "year"},
+        {"filter": "datum.year>1977"}
+      ],
+      "encoding": {
+        "x": {"field": "Date", "type": "temporal"},
+        "y": {
+          "field": "recession",
+          "type": "quantitative",
+          "axis": {"grid": false, "labels":false, "ticks":false},
+          "title": null,
+          "scale": {"domain": [10, 150]}
+        }
+      }
+    }
+  ],
+  "params": [
+    {
+      "name": "minYear",
+      "value": 1977,
+      "bind": {
+        "input": "range",
+        "min": 1977,
+        "max": 2023,
+        "step": 1,
+        "name": "Start year:"
+      }
+    },
+    {
+      "name": "maxYear",
+      "value": 2023,
+      "bind": {
+        "input": "range",
+        "min": 1977,
+        "max": 2023,
+        "step": 1,
+        "name": "End year:"
+      }
+    }
+  ],
+  "background": "beige",
+  "resolve": {"scale": {"y": "independent"}},
+  "autosize": {"type": "pad", "contains": "padding", "resize": true}
+}

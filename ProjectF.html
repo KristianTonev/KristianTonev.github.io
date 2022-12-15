@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Final Project</title>
+
+
+<link rel="stylesheet" href="index_project.css">
+
+
+<!--The next three lines allow the Vega embed-->
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+<!-- heading for page-->
+<div class="wrap">
+    <h1>Final Project<span style="color: #ffffff"></span></h1>
+    <hr>
+ 
+  </div>
+<br><br>
+<div class="body">
+<u><h2>Aims of Project</h2></u>
+<br><p>
+  The aim of my project is to identify whether leading Macroeconomic indicators can be used to predict Real GDP, and hence, recessionary periods in the USA.
+  I also explore the relationship between the changes in these Macroeconomic indicators and the returns of the S&P 500 index. The three indicators that I explore 
+  are Consumer Sentiment, the 10 Year – 2 Year Treasury Yield Curve, and Total Non-Farm Employment.
+<br><br>
+  The Consumer Sentiment Index is published every month by the University of Michigan and is calculated based on the responses of consumers to five questions 
+  <a href="https://data.sca.isr.umich.edu/survey-info.php">(further information).</a>
+<br><br>
+  The 10 Year – 2 Year Treasury Yield Curve is calculated by subtracting the 2-year treasury rate from the 10-year treasury rate. 
+  Since long dated bonds typically have a higher yield, as these securities have higher duration and investors need to be compensated for inflation and interest rate risks,
+  the yield curve is typically positive.
+  <br><br>
+  Non-Farm Employment is the measure of the number of workers in the USA, excluding farm workers and workers in a handful of other job classifications. It provides
+  an insight into the US labour market.
+  </p>
+  <br><br><u><h2>Data</h2></u>
+    <br>
+    <p>
+    The data relating to the Macroeconomic indicators and Real GDP is sourced from FRED. The S&P 500 data is sourced from the website Investing.com.
+    <br><br>
+    My three main charts use APIs. For these charts, I accessed the data from FRED by using Python in <a href="https://github.com/KristianTonev/KristianTonev.github.io/blob/main/Project.ipynb"> Google Colab.</a>
+    I first set a base URL formatted as an API link and I then created a loop which fetched the data for the series that I listed. This saves a significant amount 
+    of time if I were to observe my charts over time as I 
+    do not have to manually update them every time new data points are released.
+    <br><br>
+    I then have three scatter graphs, a histogram, and a bar chart. The data for these graphs comes in the format of csv files, though the data still originates from either
+    FRED or Investing.com.
+  </p>
+
+</div>
+
+<!-- START - Grid of divs that will house the charts-->
+<br><br><div class="grid_items">
+
+    <div class="grid_item" id="chart1"></div>
+    <div class="grid_item" id="chart2"></div>
+    <div class="grid_item" id="chart3"></div>
+    <div class="grid_item" id="chart4"></div>
+    <div class="grid_item" id="chart5"></div>
+    <div class="grid_item" id="chart6"></div>
+    <div class="grid_item" id="chart7"></div>
+    <div class="grid_item" id="chart8">
+    <p>*hoesjsdjdfjsj</p>
+    </div>
+
+  </div>
+<!-- END - Grid of divs that will house the charts-->  
+
+<br><br>
+<div class="body">
+  <u><h2>Data Cleaning</h2></u>
+  <br><p>
+    The analysis for my histogram was done in excel whereby I created bins for daily S&P 500 returns and subsequently used the “data analysis” Excel add-in to create the diagram.
+    <br><br>
+    For my bar chart, I found the first day the T10Y-T2Y yield curve turned negative on every occasion. I subsequently took the S&P 500 price on this date and took the price one
+     year later to calculate the return. The return for 2022 is an average of the previous returns as we have not yet reached one year since the curve inverted earlier in the year.
+    <br><br>
+    For the Non-Farm Employment scatter graph, I had to clean the data and remove one outlier that was a result of Covid-19. Due to the nature of the pandemic, Total Non-Farm
+     Employees dropped by 20.493 million in April 2020. To highlight the size of this outlier, the average month-on-month change is roughly 128,000. As this data point greatly
+      skewed the graph, it was removed.
+    <br><br>
+    I also worked on the visualisation of the API graphs, which each layered three separate data series, so that I could convey the information effectively. This required a 
+    significant number of transformations, calculations, and controls in Vega-Lite.
+    
+    </p>
+    <br><br><u><h2>Conclusions</h2></u>
+      <br>
+      <p>
+        Starting with consumer sentiment, one can observe that US recessions are typically preceded or coincide with a steep decline in sentiment. Once sentiment drops below 85,
+         it is usually a good indicator of recession. Next, we have non-farm employment, which is more of a confirmation indicator that stalls as we are experiencing a recession.
+         It follows a similar trend to Real GDP. Then, we have the T10Y-T2Y yield curve which has turned negative before every US recession in the last 40 years. 
+         <br><br>
+        On the contrary, turning to my scatter graphs, they show little relation between month-on-month S&P 500 returns and month-on-month changes of my macroeconomic indicators, 
+        with R-squared values near zero.
+        <br><br> 
+        Overall, however, observing the trends in these macroeconomic indicators actually proves quite profitable and supports in predicting GDP and generating returns. For 
+        example, my bar chart shows the historical returns achieved if you invested in the S&P 500 every time the yield curve first inverted. Over the last 40 years, the yield 
+        curve has inverted 13 times and on average the S&P 500 has generated a return of 11.5% in the year following the inversion. This compares to an average annual return of 
+        9.4% over the last 50 years.
+        <br><br><br>
+    </p>
+  
+  </div>
+
+  <footer>
+    <div class="pagination">
+
+</body>
+
+<script>
+    // Set the charts that we want on the page as variables, linking them to JSON files:
+    
+    var surf1 ="UMCSI.json";
+    var surf2 ="UMCSI_Scatter.json";
+    var surf3 ="NFP.json";
+    var surf4 ="NFP_Scatter.json";
+    var surf5 ="T10Y2Y.json";
+    var surf6 ="T10Y2Y_Scatter.json";
+    var surf7 ="Distribution.json";
+    var surf8 ="Bar.json";
+
+ // Now embed the charts in the divs set above:
+    vegaEmbed('#chart1', surf1, {"actions": true});   
+    vegaEmbed('#chart2', surf2, {"actions": true});
+    vegaEmbed('#chart3', surf3, {"actions": true});   
+    vegaEmbed('#chart4', surf4, {"actions": true});
+    vegaEmbed('#chart5', surf5, {"actions": true});
+    vegaEmbed('#chart6', surf6, {"actions": true});   
+    vegaEmbed('#chart7', surf7, {"actions": true});
+    vegaEmbed('#chart8', surf8, {"actions": true})
+
+</script>
+</html>
+
+

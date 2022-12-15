@@ -1,0 +1,81 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "SPX vs Total Non-Farm Employment",
+    "subtitle": [
+      "Relationship between changes in Non-Farm Payroll and S&P 500 returns",
+      "*Data excludes April and June 2020 outliers caused by Covid-19*"
+    ],
+    "subtitleFontStyle": "italic",
+    "subtitleFontSize": 10,
+    "anchor": "start",
+    "color": "black"
+  },
+  "height": 405,
+  "width": 450,
+  "data": {
+    "url": "https://raw.githubusercontent.com/KristianTonev/KristianTonev.github.io/main/NFP.csv"
+  },
+  "layer": [
+    {
+      "mark": {"type": "point", "size": 60, "color": "#e6224b", "filled": true},
+      "encoding": {
+        "x": {
+          "field": "NFP Change",
+          "type": "quantitative",
+          "title": "MoM Change in Non-Farm Payrolls",
+          "scale": {"domain": [-1500, 3000]}
+        },
+        "y": {
+          "field": "SPX Returns",
+          "type": "quantitative",
+          "title": "MoM Change in SPX (%)"
+        },
+        "tooltip": [
+          {
+            "field": "NFP Change",
+            "type": "nominal",
+            "title": "MoM Change in Non-Farm Payrolls"
+          },
+          {
+            "field": "SPX Returns",
+            "type": "quantitative",
+            "title": "MoM Change in SPX (%)"
+          },
+          {}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "line", "color": "#440714"},
+      "transform": [
+        {
+          "regression": "SPX Returns",
+          "on": "NFP Change",
+          "extent": [-1500, 3000]
+        }
+      ],
+      "encoding": {
+        "x": {"field": "NFP Change", "type": "quantitative"},
+        "y": {"field": "SPX Returns", "type": "quantitative"}
+      }
+    },
+    {
+      "transform": [
+        {"regression": "SPX Returns", "on": "NFP Change", "params": true},
+        {"calculate": "'R²: '+format(datum.rSquared, '.2f')", "as": "R2"}
+      ],
+      "mark": {
+        "type": "text",
+        "color": "firebrick",
+        "x": "width",
+        "align": "right",
+        "y": -5
+      },
+      "encoding": {"text": {"type": "nominal", "field": "R2"}}
+    }
+  ],
+  "background": "beige",
+  "autosize": {"type": "pad", "contains": "padding", "resize": true},
+  "config": {}
+}

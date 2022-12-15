@@ -1,0 +1,69 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Real GDP ",
+  "title": {
+    "text": "Power of the Treasury 10Year - 2Year Yield Curve",
+    "subtitle": ["Historical S&P 500 return one year after the T10Y-T2Y Yield Curve turned negative",
+  "*2022 figure is an average of all previous returns*"],
+    "subtitleFontStyle": "italic",
+    "subtitleFontSize": 10,
+    "anchor": "start",
+    "color": "black"
+  },
+  "height": 400,
+  "width": 450,
+  "data": {
+    "url": "https://raw.githubusercontent.com/KristianTonev/KristianTonev.github.io/main/YieldCurve.csv"
+  },
+  "mark": {"type": "bar", "color": "#e54753", "size": 28},
+  "encoding": {
+    "x": {
+      "field": "Period",
+      "type": "nominal",
+      "sort": [],
+      "title": "Year (in which T10Y-T2Y turned negative)",
+      "axis": {"grid": false, "labelAngle": 0}
+    },
+    "y": {
+      "field": "SPX 1 Year Change",
+      "type": "quantitative",
+      "title": "Return",
+      "scale": {"domain": [-0.05, 0.3]},
+      "axis": {"grid": true, "format": "%"}
+    },
+    "color": {
+      "field": "Period",
+      "type": "nominal",
+      "scale": {
+        "range": [
+          "#e6224b",
+          "#e6224b",
+          "#e6224b",
+          "#e6224b",
+          "#e6224b",
+          "#e6224b",
+          "#e6224b",
+          "#e6224b",
+          "#e6224b",
+          "#e6224b",
+          "#e6224b",
+          "#e6224b",
+          "#66a1cf"
+        ]
+      },
+      "legend": null
+    },
+    "tooltip": [
+      {"field": "Period", "type": "nominal", "title": "Year"},
+      {
+        "field": "SPX 1 Year Change",
+        "type": "quantitative",
+        "title": "1-Year return",
+        "format": ".1%"
+      }
+    ]
+  },
+  "background":"beige",
+  "autosize": {"type": "pad", "contains": "padding", "resize": true},
+  "config": {}
+}

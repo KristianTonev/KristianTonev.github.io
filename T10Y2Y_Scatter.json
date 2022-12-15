@@ -1,0 +1,79 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "SPX vs 10Y-2Y Yield Curve",
+    "subtitle": ["Relationship between changes in the 10Y-2Y yield curve and S&P 500 returns",
+  ""],
+    "subtitleFontStyle": "italic",
+    "subtitleFontSize": 10,
+    "anchor": "start",
+    "color": "black"
+  },
+  "height": 405,
+  "width": 450,
+  "data": {
+    "url": "https://raw.githubusercontent.com/KristianTonev/KristianTonev.github.io/main/T10Y2Y.csv"
+  },
+  "layer": [
+    {
+      "mark": {"type": "point", "size": 60, "color": "#e6224b", "filled": true},
+      "encoding": {
+        "x": {
+          "field": "T10Y2Y Change",
+          "type": "quantitative",
+          "title": "MoM Change in 10Year - 2Year",
+          "scale": {"domain": [-1.5, 2.0],"bins": [-1.5,-1,-0.5,0,0.5,1,1.5,2]}
+        },
+        "y": {
+          "field": "SPX Returns",
+          "type": "quantitative",
+          "title": "MoM Change in SPX (%)"
+        },
+        "tooltip": [
+          {
+            "field": "T10Y2Y Change",
+            "type": "nominal",
+            "title": "MoM Change in 10Year - 2Year"
+          },
+          {
+            "field": "SPX Returns",
+            "type": "quantitative",
+            "title": "MoM Change in SPX (%)"
+          },
+          {}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "line", "color": "#440714"},
+      "transform": [
+        {
+          "regression": "SPX Returns",
+          "on": "T10Y2Y Change",
+          "extent": [-1.5, 2.0]
+        }
+      ],
+      "encoding": {
+        "x": {"field": "T10Y2Y Change", "type": "quantitative"},
+        "y": {"field": "SPX Returns", "type": "quantitative"}
+      }
+    },
+    {
+      "transform": [
+        {"regression": "SPX Returns", "on": "T10Y2Y Change", "params": true},
+        {"calculate": "'R²: '+format(datum.rSquared, '.2f')", "as": "R2"}
+      ],
+      "mark": {
+        "type": "text",
+        "color": "firebrick",
+        "x": "width",
+        "align": "right",
+        "y": -5
+      },
+      "encoding": {"text": {"type": "nominal", "field": "R2"}}
+    }
+  ],
+  "background": "beige",
+  "autosize": {"type": "pad", "contains": "padding", "resize": true},
+  "config": {}
+}
