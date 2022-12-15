@@ -24,7 +24,7 @@
       "axis": {
         "title": "Bins (Range of % Returns)",
         "grid": false,
-        "ticks": false,
+        "ticks": true,
         "labelAngle": 45,
         "format": ".01"
       }
