@@ -32,7 +32,6 @@
       {"field": "UK average house price", "type": "quantitative", "format": ","}
     ]
   },
-  "background": "lightgray",
   "autosize": {"type": "pad", "contains": "padding", "resize": true},
   "config": {}
 }
