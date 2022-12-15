@@ -34,17 +34,17 @@ body {
   grid-row-gap: 20px;
 }
 .grid_items > div {
-  background-color: lightgray;
+  background-color: white;
   padding: 5px;
   border-radius: 10px;
   width: 400px;
   margin:auto;
 }
 .grid_items > div:nth-child(3n + 2) {
-  background-color: lightgray;
+  background-color: white;
 }
 .grid_items > div:nth-child(3n) {
-  background-color: lightgray;
+  background-color: white;
 }
 
 
