@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Wild fires",
+  "title": {
+    "text": "S&P 500 - Daily Distribution of Returns",
+    "subtitle": "What return can you typically expect to achieve",
+    "subtitleFontStyle": "italic",
+    "subtitleFontSize": 10,
+    "anchor": "start",
+    "color": "black"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/KristianTonev/KristianTonev.github.io/main/s%26p.csv"
+  },
+  "height": 300,
+  "width": 350,
+  "mark": {"type": "bar", "color": "#eb5c2e"},
+  "transform": [{"calculate": "datum.Frequency / 10614", "as": "Prob"}],
+  "encoding": {
+    "x": {
+      "field": "Bin",
+      "type": "quantitative",
+      "scale": {"domain": [-0.02, 0.02]},
+      "axis": {
+        "title": "Bins (Range of % Returns)",
+        "grid": false,
+        "ticks": false,
+        "labelAngle": 45,
+        "format": ".01"
+      }
+    },
+    "y": {
+      "field": "Prob",
+      "type": "quantitative",
+      "title": "Probability",
+      "axis": {"grid": false, "format": ".01%"}
+    },
+    "tooltip": [
+      {"field": "Bin", "type": "nominal"},
+      {
+        "field": "Prob",
+        "type": "nominal",
+        "format": ".01%",
+        "title": "Probability"
+      }
+    ]
+  },
+  "autosize": {"type": "pad", "contains": "padding", "resize": true},
+  "config": {}
+}

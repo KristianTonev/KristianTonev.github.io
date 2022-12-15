@@ -1,8 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "SPX vs UMCSI",
-    "subtitle": "Relationship between changes in consumer sentiment and S&P 500 returns",
+    "text": "SPX vs Consumer Sentiment",
+    "subtitle": [
+      "Relationship between changes in Consumer Sentiment and S&P 500 returns"
+    ],
     "subtitleFontStyle": "italic",
     "subtitleFontSize": 10,
     "anchor": "start",
@@ -18,26 +20,26 @@
       "mark": {"type": "point", "size": 60, "color": "#e6224b", "filled": true},
       "encoding": {
         "x": {
-          "field": "SPX Returns",
-          "type": "quantitative",
-          "title": "MoM Change in SPX",
-          "scale": {"domain": [-0.24, 0.12]}
-        },
-        "y": {
           "field": "UMCSI_Change",
           "type": "quantitative",
-          "title": "MoM Change in Consumer Sentiment"
+          "title": "MoM Change in Consumer Sentiment",
+          "scale": {"domain": [-20, 20]}
+        },
+        "y": {
+          "field": "SPX Returns",
+          "type": "quantitative",
+          "title": "MoM Change in SPX (%)"
         },
         "tooltip": [
           {
-            "field": "SPX Returns",
+            "field": "UMCSI_Change",
             "type": "nominal",
-            "title": "MoM change in SPX"
+            "title": "MoM Change in Consumer Sentiment"
           },
           {
-            "field": "UMCSI_Change",
+            "field": "SPX Returns",
             "type": "quantitative",
-            "title": "MoM change in Consumer Sentiment"
+            "title": "MoM Change in SPX (%)"
           },
           {}
         ]
@@ -46,20 +48,16 @@
     {
       "mark": {"type": "line", "color": "#440714"},
       "transform": [
-        {
-          "regression": "UMCSI_Change",
-          "on": "SPX Returns",
-          "extent": [-0.25, 0.15]
-        }
+        {"regression": "SPX Returns", "on": "UMCSI_Change", "extent": [-20, 20]}
       ],
       "encoding": {
-        "x": {"field": "SPX Returns", "type": "quantitative"},
-        "y": {"field": "UMCSI_Change", "type": "quantitative"}
+        "x": {"field": "UMCSI_Change", "type": "quantitative"},
+        "y": {"field": "SPX Returns", "type": "quantitative"}
       }
     },
     {
       "transform": [
-        {"regression": "UMCSI_Change", "on": "SPX Returns", "params": true},
+        {"regression": "SPX Returns", "on": "UMCSI_Change", "params": true},
         {"calculate": "'R²: '+format(datum.rSquared, '.2f')", "as": "R2"}
       ],
       "mark": {
