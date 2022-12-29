@@ -54,13 +54,12 @@
     <p>
     The data relating to the Macroeconomic indicators and Real GDP is sourced from FRED. The S&P 500 data is sourced from the website Investing.com.
     <br><br>
-    My three main charts use APIs. For these charts, I accessed the data from FRED by using Python in <a href="https://github.com/KristianTonev/KristianTonev.github.io/blob/main/Project.ipynb"> Google Colab.</a>
-    I first set a base URL formatted as an API link and I then created a loop which fetched the data for the series that I listed. This saves a significant amount 
-    of time if I were to observe my charts over time as I 
-    do not have to manually update them every time new data points are released.
+    Three of my charts use APIs. These are the charts in which there are two y-axes. In order to access the data for these charts, I employed Python and <a href="https://github.com/KristianTonev/KristianTonev.github.io/blob/main/Project.ipynb"> Google Colab.</a>
+    I first set a base URL which connected me to the data source (i.e. FRED) and following this created a loop which fetched the data for the series that I listed. The beginning of the URL is very important because it allows me to pull contents from any page via API and avoid same-origin policy problems. 
     <br><br>
-    I then have three scatter graphs, a histogram, and a bar chart. The data for these graphs comes in the format of csv files, though the data still originates from either
-    FRED or Investing.com.
+    Upon running the code, I was left with four URLs that automatically update their respective data series, every time FRED updates their data. This saves a significant amount of time if I were to want to observe the future development of these data series because I do not have to manually update them every time new data points are released. 
+    <br><br>
+    The data for the remaining graphs I made comes in the format of csv files after I downloaded the data from either FRED or Investing.com.   
   </p>
 
 </div>
