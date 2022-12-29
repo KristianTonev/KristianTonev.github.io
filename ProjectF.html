@@ -85,33 +85,33 @@
 <div class="body">
   <h2>Data Cleaning</h2>
   <br><p>
-    The analysis for my histogram was done in excel whereby I created bins for daily S&P 500 returns and subsequently used the “data analysis” Excel add-in to create the diagram.
+    The analysis for my histogram was performed in excel. I created bins for daily S&P 500 returns and subsequently used the “data analysis” Excel add-in to create the diagram.
     <br><br>
-    For my bar chart, I found the first day the T10Y-T2Y yield curve turned negative on every occasion. I subsequently took the S&P 500 price on this date and took the price one
-     year later to calculate the return. The return for 2022 is an average of the previous returns as we have not yet reached one year since the curve inverted earlier in the year.
+    For my bar chart, I filtered the dataset to find the first day the T10Y-T2Y yield curve turned negative on every occasion. I then took the S&P 500 price on this date
+     and took the price one year later to calculate the return. The return for 2022 is an average of the previous returns as we are yet to reach one year since the curve
+      inverted in mid-2022. 
     <br><br>
-    For the Non-Farm Employment scatter graph, I had to clean the data and remove one outlier that was a result of Covid-19. Due to the nature of the pandemic, Total Non-Farm
-     Employees dropped by 20.493 million in April 2020. To highlight the size of this outlier, the average month-on-month change is roughly 128,000. As this data point greatly
-      skewed the graph, it was removed.
+    For the Non-Farm Employment scatter graph, I cleaned the data by removing two outliers that were due to Covid-19. Given the nature of the pandemic, Total Non-Farm Employees
+     dropped by 20.493 million in April 2020. In June 2020, the figure rose by 4.5 million. To highlight the magnitude of these outliers, the average month-on-month change is 
+     roughly 128,000. As these data points greatly skewed the graph, they were removed.
     <br><br>
-    I also worked on the visualisation of the API graphs, which each layered three separate data series, so that I could convey the information effectively. This required a 
-    significant number of transformations, calculations, and controls in Vega-Lite.
-    
+    Lastly, each API graph contains three layered data series, so that the information could be conveyed effectively. This required a significant number of transformations and
+     calculations in Vega-Lite.
     </p>
     <br><br><h2>Conclusions</h2>
       <br>
       <p>
-        Starting with consumer sentiment, one can observe that US recessions are typically preceded or coincide with a steep decline in sentiment. Once sentiment drops below 85,
-         it is usually a good indicator of recession. Next, we have non-farm employment, which is more of a confirmation indicator that stalls as we are experiencing a recession.
-         It follows a similar trend to Real GDP. Then, we have the T10Y-T2Y yield curve which has turned negative before every US recession in the last 40 years. 
+        Starting with consumer sentiment, one can observe that US recessions are typically preceded or coincide with a steep decline in sentiment. Once sentiment drops below 85, it
+         is usually a good indicator of recession. Next, we have non-farm employment, which is more of a confirmation indicator that stalls as we are experiencing a recession.
+          It follows a similar trend to Real GDP. Last, we have the best predictor of a US recession in the T10Y-T2Y yield curve which has turned negative before every US recession
+           in the last 40 years.  
          <br><br>
-        On the contrary, turning to my scatter graphs, they show little relation between month-on-month S&P 500 returns and month-on-month changes of my macroeconomic indicators, 
-        with R-squared values near zero.
+         Turning to my scatter graphs, however, they show little relation between month-on-month S&P 500 returns and month-on-month changes of my macroeconomic indicators, with
+          R-squared values near zero. 
         <br><br> 
-        Overall, however, observing the trends in these macroeconomic indicators actually proves quite profitable and supports in predicting GDP and generating returns. For 
-        example, my bar chart shows the historical returns achieved if you invested in the S&P 500 every time the yield curve first inverted. Over the last 40 years, the yield 
-        curve has inverted 13 times and on average the S&P 500 has generated a return of 11.5% in the year following the inversion. This compares to an average annual return of 
-        9.4% over the last 50 years.
+        Overall, while perhaps statistically lacking predictability power over the market, observing the trends in these macroeconomic indicators proves useful. They predict US
+         recessions well and appear to assist in generating abnormal returns. For example, my bar chart shows that over the last 40 years, the yield curve has inverted 13 times
+          and on average the S&P 500 has generated a return of 11.5% in the year following the inversion. This compares to an average annual return of 9.4% over the last 50 years.
         <br><br><br>
     </p>
   
